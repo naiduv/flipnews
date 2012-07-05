@@ -1,0 +1,118 @@
+<html>
+<head>
+<title>Guess Zodiac Signs</title>
+  <style type="text/css">
+  #up
+  {
+    position:absolute;
+    top:1%;
+    left:28%;
+    height:2%;
+  }
+  #down
+  {
+    position:absolute;
+    top:95%;
+    left:28%;
+    height:2%;
+  }
+  #mainframe 
+  {
+    position:absolute;
+    right:40%;
+    top:4%;
+    bottom:5%;
+    border:0;
+  }
+
+  .movedownanimate
+  {
+    -webkit-animation:movedown 0.3s;
+  }
+
+  @-webkit-keyframes movedown
+  {
+    0% {top:10%; height:84%;}
+    25% {top:25%; height:69%;}
+    50% {top:50%; height:44%;}
+    75% {top:75%; height:19%;}
+    100% {top:94%; height:0%;}
+  }
+ 
+   .moveupanimate
+  {
+    -webkit-animation:moveup 0.3s;
+  }
+
+  @-webkit-keyframes moveup
+  {
+    0% {top:0px;}
+    25% {top:-25%;}
+    50% {top:-50%;}
+    75% {top:-75%;}
+    100% {top:-94%;}
+  }
+
+  .showmainframe
+  {
+    position:absolute;
+    right:40%;
+    top:4%;
+    bottom:5%;
+    height:90%;
+  }
+  .hidemainframe
+  {
+    border:0;
+    height:0%;
+  }
+
+  </style>
+</head>
+<body>
+  <img id="up" src="./up.png" onclick="onup()"></img>
+<!--   <iframe id="mainframe-neg" height="90%" width="60%" src="http://online.wsj.com/article/SB10001424052702304141204577506602345146644.html"></iframe> -->
+  <iframe id="mainframe" height="90%" width="60%" src="http://online.wsj.com/article/SB10001424052702304141204577506602345146644.html"></iframe>
+  <!-- <iframe id="mainframe-pos" height="90%" width="60%" src="http://online.wsj.com/article/SB10001424052702304141204577506602345146644.html"></iframe> -->
+  <img id="down" src="./down.png" onclick="ondown()"></img>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript">
+function onup()
+{
+  console.log("onup")
+  $('#mainframe').addClass('moveupanimate');
+  $('#mainframe').removeClass('showmainframe');
+
+  setTimeout(function(){
+    $('#mainframe').removeClass('moveupanimate');
+    $('#mainframe').addClass('hidemainframe');
+  }, 300);
+}
+
+function ondown()
+{
+  console.log("ondown")
+  $('#mainframe').addClass('movedownanimate');
+  $('#mainframe').removeClass('showmainframe');
+
+  setTimeout(function(){
+    $('#mainframe').removeClass('movedownanimate');
+    $('#mainframe').addClass('hidemainframe');
+  }, 300);
+}
+
+
+function onkeyup()
+{
+
+}
+
+
+window.onload = function() {
+  $('#mainframe').addClass('showmainframe');
+}
+
+</script>
+<html>
