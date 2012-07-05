@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Guess Zodiac Signs</title>
+<title>Flip news</title>
   <style type="text/css">
   #up
   {
@@ -32,11 +32,11 @@
 
   @-webkit-keyframes movedown
   {
-    0% {top:10%; height:84%;}
-    25% {top:25%; height:69%;}
-    50% {top:50%; height:44%;}
-    75% {top:75%; height:19%;}
-    100% {top:94%; height:0%;}
+    0% {top:10%;}
+    25% {top:25%;}
+    50% {top:50%;}
+    75% {top:75%;}
+    100% {top:94%;}
   }
  
    .moveupanimate
@@ -46,7 +46,7 @@
 
   @-webkit-keyframes moveup
   {
-    0% {top:0px;}
+    0% {top:6%;}
     25% {top:-25%;}
     50% {top:-50%;}
     75% {top:-75%;}
@@ -71,47 +71,67 @@
 </head>
 <body>
   <img id="up" src="./up.png" onclick="onup()"></img>
-<!--   <iframe id="mainframe-neg" height="90%" width="60%" src="http://online.wsj.com/article/SB10001424052702304141204577506602345146644.html"></iframe> -->
-  <iframe id="mainframe" height="90%" width="60%" src="http://online.wsj.com/article/SB10001424052702304141204577506602345146644.html"></iframe>
-  <!-- <iframe id="mainframe-pos" height="90%" width="60%" src="http://online.wsj.com/article/SB10001424052702304141204577506602345146644.html"></iframe> -->
   <img id="down" src="./down.png" onclick="ondown()"></img>
-</body>
+
+<!--   <iframe id="mainframe-neg" height="90%" width="60%" src="http://online.wsj.com/article/SB10001424052702304141204577506602345146644.html"></iframe> -->
+  <iframe id="mainframe" height="90%" width="60%" src="./welcome.html"></iframe>
+  <!-- <iframe id="mainframe-pos" height="90%" width="60%" src="http://online.wsj.com/article/SB10001424052702304141204577506602345146644.html"></iframe> -->
+ </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script type="text/javascript">
+
+var pages = ["http://www.sfgate.com/politics/article/Romney-calls-health-care-law-a-tax-3684746.php", "http://www.theatlantic.com/technology/archive/2012/07/what-this-higgs-boson-thing-really-means/259438/", "http://news.nationalpost.com/2012/07/05/what-is-polonium-and-how-do-i-know-if-ive-been-poisoned/","http://www.bloomberg.com/news/2012-07-04/draghi-king-may-delve-deeper-into-zero-rate-world-today.html","http://msn.foxsports.com/nba/story/Steve-Nash-goes-to-Lakers-in-sign-and-trade-deal-070412","http://www.telegraph.co.uk/culture/film/filmreviews/9376721/The-Amazing-Spider-Man-Seven-magazine-review.html"]
+
 function onup()
 {
   console.log("onup")
   $('#mainframe').addClass('moveupanimate');
-  $('#mainframe').removeClass('showmainframe');
+  //$('#mainframe').removeClass('showmainframe');
 
   setTimeout(function(){
     $('#mainframe').removeClass('moveupanimate');
-    $('#mainframe').addClass('hidemainframe');
+    //$('#mainframe').addClass('hidemainframe');
   }, 300);
-}
+
+  loadnextpage();
+ }
 
 function ondown()
 {
   console.log("ondown")
   $('#mainframe').addClass('movedownanimate');
-  $('#mainframe').removeClass('showmainframe');
+  //$('#mainframe').removeClass('showmainframe');
 
   setTimeout(function(){
-    $('#mainframe').removeClass('movedownanimate');
-    $('#mainframe').addClass('hidemainframe');
+  $('#mainframe').removeClass('movedownanimate');
+    //$('#mainframe').addClass('hidemainframe');
   }, 300);
+
+  loadnextpage();
 }
 
-
-function onkeyup()
+onkeyup = function(e)
 {
-
+  console.log(e.keyCode);
+  switch(e.keyCode){
+    case 38: onup(); break;
+    case 40: ondown(); break;
+  }
 }
-
 
 window.onload = function() {
   $('#mainframe').addClass('showmainframe');
+}
+
+
+var loc = 0;
+function loadnextpage()
+{
+  document.getElementById("mainframe").src="";
+  document.getElementById("mainframe").src=pages[loc++];
+  if(loc==pages.length)
+    loc=0;
 }
 
 </script>
